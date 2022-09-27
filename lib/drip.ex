@@ -7,6 +7,18 @@ defmodule Drip do
   # Subscribers/people
 
   @doc """
+  List all subscribers
+
+  For available params please consult Drip documentation
+  https://developer.drip.com/#list-all-subscribers
+  """
+  def list_all_subscribers(opts \\ []) do
+    "/subscribers"
+    |> Drip.Client.get(query: opts)
+    |> Drip.Handler.handle()
+  end
+
+  @doc """
   Create or update subscriber
 
   If submitted list of subscribers batch API is used

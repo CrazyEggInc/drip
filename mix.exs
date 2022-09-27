@@ -35,7 +35,7 @@ defmodule Drip.MixProject do
       # Required
       {:tesla, "~> 1.4"},
       {:hackney, "~> 1.17"},
-      {:jason, "~> 1.3"},
+      {:jason, "~> 1.4"},
 
       # Dev deps
       {:credo, "~> 1.6", only: :dev, runtime: false},
