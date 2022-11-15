@@ -40,9 +40,11 @@ defmodule Drip do
       |> Enum.chunk_every(1000)
       |> Enum.map(&%{subscribers: &1})
 
-    "/subscribers/batches"
-    |> Drip.Client.post(%{batches: data})
-    |> Drip.Handler.handle()
+    for batch <- data do
+      "/subscribers/batches"
+      |> Drip.Client.post(%{batches: [batch]})
+      |> Drip.Handler.handle()
+    end
   end
 
   @doc """
@@ -82,8 +84,10 @@ defmodule Drip do
       |> Enum.chunk_every(1000)
       |> Enum.map(&%{events: &1})
 
-    "/events/batches"
-    |> Drip.Client.post(%{batches: data})
-    |> Drip.Handler.handle()
+    for batch <- data do
+      "/events/batches"
+      |> Drip.Client.post(%{batches: [batch]})
+      |> Drip.Handler.handle()
+    end
   end
 end
