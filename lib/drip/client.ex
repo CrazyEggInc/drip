@@ -4,7 +4,7 @@ defmodule Drip.Client do
   """
   use Tesla
 
-  adapter Tesla.Adapter.Hackney
+  adapter Tesla.Adapter.Hackney, recv_timeout: 30_000
 
   plug Tesla.Middleware.BaseUrl,
        "https://api.getdrip.com/v2/#{Application.fetch_env!(:drip, :account_id)}"
