@@ -29,12 +29,9 @@ defmodule Drip do
   @spec create_or_update_subscriber(data :: [map()] | map()) ::
           {:ok, map()} | {:error, atom()}
   def create_or_update_subscriber(subscriber) when is_map(subscriber) do
-    {:ok, data} =
-      "/subscribers"
-      |> Drip.Client.post(%{subscribers: [subscriber]})
-      |> Drip.Handler.handle()
-
-    {:ok, List.first(data["subscribers"])}
+    "/subscribers"
+    |> Drip.Client.post(%{subscribers: [subscriber]})
+    |> Drip.Handler.handle()
   end
 
   def create_or_update_subscriber(subscribers) when is_list(subscribers) do
