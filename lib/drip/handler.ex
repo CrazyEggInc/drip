@@ -41,7 +41,7 @@ defmodule Drip.Handler do
 
   def handle({:ok, %Tesla.Env{status: 429}}) do
     Logger.warning("API rate limit exceeded")
-    {:error, "API rate limit exceeded. Please try again in an hour."}
+    {:error, :rate_limit}
   end
 
   def handle({:ok, %Tesla.Env{status: status, body: body}}) do
