@@ -48,6 +48,32 @@ defmodule Drip do
   end
 
   @doc """
+  Unsubscribe user or list of users from all campaigns
+
+  For available params please consult Drip documentation
+  https://developer.drip.com/#unsubscribe-from-all-mailings
+  """
+  @spec unsubscribe(String.t() | [String.t()]) :: {:ok, map()} | {:error, atom()}
+  def unsubscribe(user) when is_binary(user) do
+    "/subscribers/#{user}/unsubscribe_all"
+    |> Drip.Client.post("")
+    |> Drip.Handler.handle()
+  end
+
+  def unsubscribe(users) when is_list(users) do
+    data =
+      users
+      |> Enum.chunk_every(1000)
+      |> Enum.map(&%{email: &1})
+
+    for batch <- data do
+      "/unsubscribes/batches"
+      |> Drip.Client.post(%{batches: [%{subscribers: batch}]})
+      |> Drip.Handler.handle()
+    end
+  end
+
+  @doc """
   Delete subscriber
 
   You have to provide subscriber ID or email
