@@ -63,12 +63,13 @@ defmodule Drip do
   def unsubscribe(users) when is_list(users) do
     data =
       users
-      |> Enum.chunk_every(1000)
       |> Enum.map(&%{email: &1})
+      |> Enum.chunk_every(1000)
+      |> Enum.map(&%{subscribers: &1})
 
     for batch <- data do
       "/unsubscribes/batches"
-      |> Drip.Client.post(%{batches: [%{subscribers: batch}]})
+      |> Drip.Client.post(%{batches: [batch]})
       |> Drip.Handler.handle()
     end
   end
