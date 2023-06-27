@@ -30,7 +30,7 @@ defmodule Drip.Handler do
   end
 
   def handle({:ok, %Tesla.Env{status: 404}}) do
-    Logger.warn("Drip resource not found")
+    Logger.warning("Drip resource not found")
     {:error, :not_found}
   end
 
