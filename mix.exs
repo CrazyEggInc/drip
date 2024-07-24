@@ -7,7 +7,7 @@ defmodule Drip.MixProject do
     [
       app: :drip,
       version: @version,
-      elixir: "~> 1.14",
+      elixir: "~> 1.17",
       consolidate_protocols: Mix.env() != :test,
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -33,13 +33,13 @@ defmodule Drip.MixProject do
   defp deps do
     [
       # Required
-      {:tesla, "~> 1.7"},
-      {:hackney, "~> 1.17"},
+      {:tesla, "~> 1.11"},
+      {:hackney, "~> 1.20"},
       {:jason, "~> 1.4"},
 
       # Dev deps
       {:credo, "~> 1.7", only: :dev, runtime: false},
-      {:ex_doc, "~> 0.29", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.34", only: :dev, runtime: false}
     ]
   end
 

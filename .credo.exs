@@ -55,7 +55,6 @@
           {Credo.Check.Readability.SingleFunctionToBlockPipe, []},
           {Credo.Check.Readability.SinglePipe, []},
           {Credo.Check.Readability.SpaceAfterCommas, []},
-          {Credo.Check.Readability.Specs, []},
           {Credo.Check.Readability.StrictModuleLayout, []},
           {Credo.Check.Readability.StringSigils, []},
           {Credo.Check.Readability.TrailingBlankLine, []},
@@ -119,6 +118,7 @@
           {Credo.Check.Warning.UnsafeExec, []}
         ],
         disabled: [
+          {Credo.Check.Readability.Specs, []},
           {Credo.Check.Warning.LazyLogging, []}
         ]
       }

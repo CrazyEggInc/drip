@@ -1,6 +1,6 @@
 import Config
 
-if Mix.env() == :test do
+if config_env() == :test do
   config :logger, :console, level: :warn
 
   config :tesla, Drip.Client, adapter: Tesla.Mock
